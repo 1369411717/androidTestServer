@@ -21,13 +21,13 @@ public class SqlTestInfo {
     @RequestMapping("selectAllTestInfo")
     private List<TestInfo> selectAllTestInfo(){return testInfoServer.selectAllTestInfo();}
 
-    @RequestMapping("insertTestInfo")
+    @RequestMapping("/insertTestInfo")
     private int insertTestInfo(int classId,String testName,String testDate,int testSegment,String testClassroom,int seatCount){
         TestInfo testInfo=new TestInfo(classId,testName,Date.valueOf(testDate),testSegment,testClassroom);
         return testInfoServer.insertTestInfo(testInfo,seatCount);
     };
 
-    @RequestMapping("deleteTestInfo")
+    @RequestMapping("/deleteTestInfo")
     private int deleteTestInfo(int testId,int classId){
         return testInfoServer.deleteTestInfo(testId,classId);
     }
