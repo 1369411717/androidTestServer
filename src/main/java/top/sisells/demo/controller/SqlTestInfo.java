@@ -22,9 +22,9 @@ public class SqlTestInfo {
     private List<TestInfo> selectAllTestInfo(){return testInfoServer.selectAllTestInfo();}
 
     @RequestMapping("insertTestInfo")
-    private int insertTestInfo(int classId,String testName,String testDate,int testSegment,String testClassroom,int testStudentCount){
-        TestInfo testInfo=new TestInfo(classId,testName,Date.valueOf(testDate),testSegment,testClassroom,testStudentCount);
-        return testInfoServer.insertTestInfo(testInfo);
+    private int insertTestInfo(int classId,String testName,String testDate,int testSegment,String testClassroom,int seatCount){
+        TestInfo testInfo=new TestInfo(classId,testName,Date.valueOf(testDate),testSegment,testClassroom);
+        return testInfoServer.insertTestInfo(testInfo,seatCount);
     };
 
     @RequestMapping("deleteTestInfo")

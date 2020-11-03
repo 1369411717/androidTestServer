@@ -20,12 +20,11 @@ public class TestInfo {
    private String testClassroom;
    private int testStudentCount;
 
-   public TestInfo(int classId,String testName, Date testDate, int testSegment, String testClassroom, int testStudentCount) {
+   public TestInfo(int classId,String testName, Date testDate, int testSegment, String testClassroom) {
       this.classId=classId;
       this.testName = testName;
       this.testDate = testDate;
       this.testSegment = testSegment;
       this.testClassroom = testClassroom;
-      this.testStudentCount = testStudentCount;
    }
 }
