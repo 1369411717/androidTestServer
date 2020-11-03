@@ -42,17 +42,19 @@ public class TestInfoServerImpl implements TestInfoServer {
                     classInfoSql.updateClassInfoLeftStudentCount(0, testInfo.getClassId());//处理课程的剩余学生人数
                 } else if (seatCount < leftStudentCount) {
                     testInfo.setTestStudentCount(seatCount);//处理考试学生人数
-                    classInfoSql.updateClassInfoLeftStudentCount(leftStudentCount, testInfo.getClassId());
+                    classInfoSql.updateClassInfoLeftStudentCount(leftStudentCount-seatCount, testInfo.getClassId());
                 }
+                return testInfoSql.insertTestInfo(testInfo);
+            }else {
+                return -2;//错误的请求
             }
-            return testInfoSql.insertTestInfo(testInfo);
         }
     }
 
     public int deleteTestInfo(int testId,int classId){
         //解决外键冲突
-        //处理监考老师的删除
-        //修改课程剩余安排人数,classId处理
+        //处理监考老师的删除！！！！！！！！！！！！！！！！！
+        //修改课程剩余安排人数
         //修改前的考试人数
         int preStudentCount=testInfoSql.selectByTestId(testId).get(0).getTestStudentCount();
         //课程剩余未安排人数
@@ -76,16 +78,14 @@ public class TestInfoServerImpl implements TestInfoServer {
             int preStudentCount=testInfoSql.selectByTestId(testInfo.getTestId()).get(0).getTestStudentCount();
             //课程剩余未安排人数
             int leftStudentCount=classInfoSql.selectByClassId(testInfo.getClassId()).get(0).getLeftStudentCount();
-            if(leftStudentCount!=0) {
-                int outStudentCount = preStudentCount + leftStudentCount;
-                if (seatCount >= outStudentCount) {
+            int outStudentCount = preStudentCount + leftStudentCount;
+            if (seatCount >= outStudentCount) {
                     testInfo.setTestStudentCount(outStudentCount);
                     classInfoSql.updateClassInfoLeftStudentCount(0, testInfo.getClassId());//处理课程的剩余学生人数
                 } else if (seatCount < outStudentCount) {
                     testInfo.setTestStudentCount(seatCount);//处理考试学生人数
                     classInfoSql.updateClassInfoLeftStudentCount(outStudentCount - seatCount, testInfo.getClassId());
                 }
-            }
             //根据testId修改监考老师表的教室!!!!!!!!!!!!!!!!!!!!!!!
             return testInfoSql.updateTestInfoOnClassroom(testInfo);
         }
