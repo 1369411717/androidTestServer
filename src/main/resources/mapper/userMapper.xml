@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.sisells.demo.dao.UserSql">
+    <resultMap id="map" type="top.sisells.demo.pojo.User">
+        <result column="userName" property="userName" ></result>
+        <result column="password" property="password"></result>
+    </resultMap>
+
+    <select id="selectAllUser" resultType="top.sisells.demo.pojo.User">
+        select * from user
+    </select>
+    <insert id="insertUser" parameterType="top.sisells.demo.pojo.User" >
+    <!--IGNORE处理重复值的唯一约束-->
+        insert IGNORE into user values (#{userNumber},#{userName},#{password},#{classification},#{userType})
+    </insert>
+    <select id="selectUser" resultType="top.sisells.demo.pojo.User">
+        select * from user where userNumber = #{userNumber} and password = #{password}
+    </select>
+    <delete id="deleteUser">
+        delete from user where userNumber = #{userNumber}
+    </delete>
+    <update id="updateUser" parameterType="top.sisells.demo.pojo.User">
+        update user set userNumber=#{userNumber},userName=#{userName},password=#{password},
+        classification=#{classification},userType=#{userType} where userNumber=#{userNumber}
+    </update>
+</mapper>

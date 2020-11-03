@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.sisells.demo.dao.TestInfoSql">
+    <select id="selectAllTestInfo" resultType="top.sisells.demo.pojo.TestInfo">
+        select * from testinfo
+    </select>
+    <select id="selectOnlyOne" resultType="top.sisells.demo.pojo.TestInfo" parameterType="top.sisells.demo.pojo.TestInfo">
+        <!--寻找冲突的考试-->
+        selec * from testinfo where testDate=#{testDate} and testSegment=#{testSegment}
+        and testClassroom=#{testClassroom};
+    </select>
+    <select id="selectOnlyOneByList" resultType="top.sisells.demo.pojo.TestInfo" >
+        <!--寻找冲突的考试-->
+        select * from testinfo where testDate=#{testDate} and testSegment=#{testSegment}
+         and testClassroom in
+        <foreach collection="testClassroomList" open="(" separator="," close=")" item="item" index="index">
+            '${item}'
+        </foreach>
+    </select>
+    <insert id="insertTestInfo" parameterType="top.sisells.demo.pojo.TestInfo" useGeneratedKeys="true" keyColumn="testId">
+        insert IGNORE into testinfo (classId,testName,testDate,testSegment,testClassroom,testStudentCount)
+        values(#{classId},#{testName},#{testDate},#{testSegment},#{testClassroom},#{testStudentCount})
+    </insert>
+    <delete id="deleteTestInfo">
+        delete from testinfo where testId = #{testId}
+    </delete>
+    <select id="selectByClassId" resultType="top.sisells.demo.pojo.TestInfo">
+        select * from testinfo where classId = #{classId}
+    </select>
+    <update id="updateTestInfoOnClassroom" parameterType="top.sisells.demo.pojo.TestInfo">
+        update testinfo set testClassroom=#{testClassroom},testStudentCount=#{testStudentCount}
+         where testId=#{testId}
+    </update>
+    <update id="updateTestInfoDate" parameterType="top.sisells.demo.pojo.TestInfo">
+        update testinfo set testDate=#{testDate},testSegment=#{testSegment} where classId=#{classId}
+    </update>
+    <select id="selectByTestId" resultType="top.sisells.demo.pojo.TestInfo">
+        select * from testinfo where testId=#{testId}
+    </select>
+</mapper>

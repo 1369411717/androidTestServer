@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.sisells.demo.dao.ClassInfoSql">
+    <insert id="insertClassInfo" parameterType="top.sisells.demo.pojo.ClassInfo" useGeneratedKeys="true" keyColumn="classId">
+        <!--IGNORE处理重复值的唯一约束,重复返回0-->
+        insert IGNORE into classinfo values (#{classNumber},#{className},#{studentCount},#{leftStudentCount},#{teacherId},#{teacherName})
+    </insert>
+    <select id="selectAllClassInfo" resultType="top.sisells.demo.pojo.ClassInfo">
+        select * from classinfo
+        <where>
+            <if test="semester != '全部学期' and semester != null and semester !=''  ">
+                semester = #{semester}
+            </if>
+            <choose>
+                <when test="leftStudentModel == '已安排' ">
+                    and leftStudentCount = 0
+                 </when>
+                <when test="leftStudentModel == '未安排' ">
+                    and leftStudentCount > 0
+                </when>
+                <otherwise></otherwise>
+            </choose>
+        </where>
+    </select>
+    <delete id="deleteClassInfo">
+        delete from classinfo where classId = #{classId}
+    </delete>
+    <update id="updateClassInfoLeftStudentCount">
+        update classinfo set leftStudentCount = #{leftStudentCount} where classId = #{classId}
+    </update>
+    <select id="selectSemester" resultType="top.sisells.demo.pojo.ClassInfo">
+        select DISTINCT semester from classinfo;
+    </select>
+    <select id="selectByTeacherId" resultType="top.sisells.demo.pojo.ClassInfo">
+        select teacherId from classinfo where teacherId = #{teacherId};
+    </select>
+    <select id="selectByClassId" resultType="top.sisells.demo.pojo.ClassInfo">
+        select * from classinfo where classId=#{classId}
+    </select>
+</mapper>
