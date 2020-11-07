@@ -72,8 +72,11 @@ public class TestInfoServerImpl implements TestInfoServer {
         //修改课程剩余安排人数
         //教室应该没有冲突
         if (testInfoSql.selectOnlyOne(testInfo).size()!=0){
+            if(testInfo.getTestId()==testInfoSql.selectOnlyOne(testInfo).get(0).getTestId()){
+                return -2;//数据没有修改
+            }
             return -1;//有冲突
-        }else {
+        }else  {
             //修改前的考试人数
             int preStudentCount=testInfoSql.selectByTestId(testInfo.getTestId()).get(0).getTestStudentCount();
             //课程剩余未安排人数
@@ -105,11 +108,17 @@ public class TestInfoServerImpl implements TestInfoServer {
                 testClassroomList.add(testInfoList.get(i).getTestClassroom());
             }
             System.out.println(testClassroomList.toString());
-            if(testInfoSql.selectOnlyOneByList(testInfo.getTestDate(),
-                    testInfo.getTestSegment(),testClassroomList).size()==0){ //2，查找相同时间按段是否有冲突
+            List<TestInfo> testInfos=testInfoSql.selectOnlyOneByList(testInfo.getTestDate(),
+                    testInfo.getTestSegment(),testClassroomList);
+            if(testInfos.size()==0){ //2，查找相同时间按段是否有冲突
                 return testInfoSql.updateTestInfoDate(testInfo);
             }else {
-                return -1;//修改的时间段内有冲突的教室
+                for (int i=0;i<testInfos.size();i++){
+                    if(testInfos.get(i).getClassId()!=testInfo.getClassId()){
+                        return -1;//修改的时间段内有冲突的教室
+                    }
+                }
+                return -2;//数据没有变动
             }
         }
     }
