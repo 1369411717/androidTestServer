@@ -7,8 +7,8 @@
     </select>
     <select id="selectOnlyOne" resultType="top.sisells.demo.pojo.TestInfo" parameterType="top.sisells.demo.pojo.TestInfo">
         <!--寻找冲突的考试-->
-        selec * from testinfo where testDate=#{testDate} and testSegment=#{testSegment}
-        and testClassroom=#{testClassroom};
+        select * from testinfo where testDate=#{testDate} and testSegment=#{testSegment}
+        and testClassroom=#{testClassroom}
     </select>
     <select id="selectOnlyOneByList" resultType="top.sisells.demo.pojo.TestInfo" >
         <!--寻找冲突的考试-->
