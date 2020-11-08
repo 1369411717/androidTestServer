@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 @RequestMapping("testInfo")
 @ResponseBody
-public class SqlTestInfo {
+public class TestInfoController {
     @Autowired
     private TestInfoServer testInfoServer;
 

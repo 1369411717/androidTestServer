@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 @ResponseBody
 @RequestMapping("/classroomInfo")
-public class SqlClassroomInfo {
+public class ClassroomInfoController {
     @Autowired
     private ClassroomInfoSql classroomInfoSql;
 

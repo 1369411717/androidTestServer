@@ -15,7 +15,7 @@ import java.util.List;
 @Controller
 @RequestMapping("user")
 @ResponseBody
-public class SqlUser {
+public class UserController {
 
     @Autowired
     private UserServer userServer;

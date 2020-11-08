@@ -14,7 +14,7 @@ import java.util.List;
 @Controller
 @ResponseBody
 @RequestMapping("/classInfo")
-public class SqlClassInfo {
+public class ClassInfoController {
     @Autowired
     private ClassInfoSql classInfoSql;
 
