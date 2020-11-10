@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import top.sisells.demo.dao.TestPersonSql;
 import top.sisells.demo.pojo.TestPerson;
+import top.sisells.demo.server.TestPersonServer;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import java.util.List;
 @RequestMapping("/testPerson")
 public class TestPersonController {
     @Autowired
-    private TestPersonSql testPersonSql;
+    private TestPersonServer testPersonServer;
 
     @RequestMapping("/selectAllTestPerson")
     public List<TestPerson> selectAllTestPerson(){
-        return testPersonSql.selectAllTestPerson();
+        return testPersonServer.selectAllTestPerson();
     }
 }
