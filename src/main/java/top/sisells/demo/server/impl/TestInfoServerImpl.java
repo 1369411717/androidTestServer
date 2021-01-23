@@ -72,6 +72,7 @@ public class TestInfoServerImpl implements TestInfoServer {
         //修改课程剩余安排人数
         //教室应该没有冲突
         if (testInfoSql.selectOnlyOne(testInfo).size()!=0){
+            //！！！sdl语句优化，安卓端验证数据变动
             if(testInfo.getTestId()==testInfoSql.selectOnlyOne(testInfo).get(0).getTestId()){
                 return -2;//数据没有修改
             }

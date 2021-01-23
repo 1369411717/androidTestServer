@@ -7,14 +7,14 @@ import java.util.List;
 
 public interface ClassInfoServer {
     List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel);
-    public int insertClassInfo(String classNumber,String className,int studentCount,
+    int insertClassInfo(String classNumber,String className,int studentCount,
                                int leftStudentCount,int teacherId,String teacherName,String semester);
 
-    public int deleteClassInfo(int classId);
+    int deleteClassInfo(int classId);
 
-    public int updateClassInfoLeftStudentCount(@RequestParam(required = true) int classId, @RequestParam(required = true)int leftStudentCount);
+    int updateClassInfoLeftStudentCount(@RequestParam(required = true) int classId, @RequestParam(required = true)int leftStudentCount);
 
-    public List<ClassInfo> selectSemester();
+    List<ClassInfo> selectSemester();
 
-    public List<ClassInfo> selectByClassId(int classId);
+    List<ClassInfo> selectByClassId(int classId);
 }
