@@ -6,7 +6,7 @@ import top.sisells.demo.pojo.ClassInfo;
 import java.util.List;
 
 public interface ClassInfoServer {
-    List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel);
+    List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel,String searchTextValue);
     int insertClassInfo(String classNumber,String className,int studentCount,
                                int leftStudentCount,int teacherId,String teacherName,String semester);
 

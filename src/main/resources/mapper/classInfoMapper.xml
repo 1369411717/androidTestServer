@@ -2,9 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="top.sisells.demo.dao.ClassInfoSql">
-    <insert id="insertClassInfo" parameterType="top.sisells.demo.pojo.ClassInfo" useGeneratedKeys="true" keyColumn="classId">
+    <insert id="insertClassInfo" parameterType="top.sisells.demo.pojo.ClassInfo" useGeneratedKeys="true"
+            keyColumn="classId">
         <!--IGNORE处理重复值的唯一约束,重复返回0-->
-        insert IGNORE into classinfo values (#{classNumber},#{className},#{studentCount},#{leftStudentCount},#{teacherId},#{teacherName})
+        insert IGNORE into classinfo values
+        (#{classNumber},#{className},#{studentCount},#{leftStudentCount},#{teacherId},#{teacherName})
     </insert>
     <select id="selectAllClassInfo" resultType="top.sisells.demo.pojo.ClassInfo">
         select * from classinfo
@@ -15,12 +17,15 @@
             <choose>
                 <when test="leftStudentModel == '已安排' ">
                     and leftStudentCount = 0
-                 </when>
+                </when>
                 <when test="leftStudentModel == '未安排' ">
                     and leftStudentCount > 0
                 </when>
                 <otherwise></otherwise>
             </choose>
+            <if test="searchTextValue != null and searchTextValue != '' ">
+                and (className like "%"#{searchTextValue}"%" or classNumber like "%"#{searchTextValue}"%")
+            </if>
         </where>
     </select>
     <delete id="deleteClassInfo">

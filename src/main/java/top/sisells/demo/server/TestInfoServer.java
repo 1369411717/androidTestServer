@@ -5,6 +5,9 @@ import top.sisells.demo.pojo.TestInfo;
 import java.sql.Date;
 import java.util.List;
 
+/**
+ * @author 大江户时代
+ */
 public interface TestInfoServer {
     List<TestInfo> selectAllTestInfo();
     int insertTestInfo(TestInfo testInfo,int seatCount);

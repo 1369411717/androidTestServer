@@ -9,11 +9,17 @@ import java.util.List;
 @Mapper
 @Repository
 public interface ClassInfoSql {
-    List<ClassInfo> selectAllClassInfo(String semester,String leftStudentModel);
+    List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String searchTextValue);
+
     int insertClassInfo(ClassInfo classInfo);
+
     int deleteClassInfo(int classId);
-    int updateClassInfoLeftStudentCount(int leftStudentCount,int classId);
+
+    int updateClassInfoLeftStudentCount(int leftStudentCount, int classId);
+
     List<ClassInfo> selectSemester();
+
     List<ClassInfo> selectByTeacherId(int teacherId);
+
     List<ClassInfo> selectByClassId(int classId);
 }

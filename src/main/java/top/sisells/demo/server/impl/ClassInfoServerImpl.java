@@ -16,29 +16,37 @@ public class ClassInfoServerImpl implements ClassInfoServer {
     @Autowired
     private ClassInfoSql classInfoSql;
 
-    public List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel){
-        return classInfoSql.selectAllClassInfo(semester,leftStudentModel);
+    @Override
+    public List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String searchTextValue) {
+        return classInfoSql.selectAllClassInfo(semester, leftStudentModel, searchTextValue);
     }
 
-    public int insertClassInfo(String classNumber,String className,int studentCount,
-                                int leftStudentCount,int teacherId,String teacherName,String semester){
-        ClassInfo classInfo=new ClassInfo(classNumber,className,studentCount,leftStudentCount,teacherId,teacherName,semester);
+    @Override
+    public int insertClassInfo(String classNumber, String className, int studentCount,
+                               int leftStudentCount, int teacherId, String teacherName, String semester) {
+        ClassInfo classInfo = new ClassInfo(classNumber, className, studentCount, leftStudentCount, teacherId, teacherName, semester);
         return classInfoSql.insertClassInfo(classInfo);
     }
 
-    public int deleteClassInfo(int classId){
+    @Override
+    public int deleteClassInfo(int classId) {
         return classInfoSql.deleteClassInfo(classId);
     }
 
-    public int updateClassInfoLeftStudentCount(@RequestParam(required = true) int classId, @RequestParam(required = true)int leftStudentCount){
-        return classInfoSql.updateClassInfoLeftStudentCount(leftStudentCount,classId);
-    };
+    @Override
+    public int updateClassInfoLeftStudentCount(@RequestParam(required = true) int classId, @RequestParam(required = true) int leftStudentCount) {
+        return classInfoSql.updateClassInfoLeftStudentCount(leftStudentCount, classId);
+    }
 
-    public List<ClassInfo> selectSemester(){
+    ;
+
+    @Override
+    public List<ClassInfo> selectSemester() {
         return classInfoSql.selectSemester();
     }
 
-    public List<ClassInfo> selectByClassId(int classId){
+    @Override
+    public List<ClassInfo> selectByClassId(int classId) {
         return classInfoSql.selectByClassId(classId);
     }
 }

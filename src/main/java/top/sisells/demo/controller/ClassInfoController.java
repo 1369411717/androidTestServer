@@ -20,34 +20,35 @@ public class ClassInfoController {
     private ClassInfoServer classInfoServer;
 
     @RequestMapping("/selectAllClassInfo")
-    private List<ClassInfo> selectAllClassInfo(String semester,String leftStudentModel){
-        //System.out.println(semester+leftStudentModel);
-        return classInfoServer.selectAllClassInfo(semester,leftStudentModel);
+    private List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String searchTextValue) {
+        return classInfoServer.selectAllClassInfo(semester, leftStudentModel, searchTextValue);
     }
 
     @RequestMapping("/insertClassInfo")
-    private int insertClassInfo(String classNumber,String className,int studentCount,
-                                int leftStudentCount,int teacherId,String teacherName,String semester){
-        return classInfoServer.insertClassInfo(classNumber,className,studentCount,leftStudentCount,teacherId,teacherName,semester);
+    private int insertClassInfo(String classNumber, String className, int studentCount,
+                                int leftStudentCount, int teacherId, String teacherName, String semester) {
+        return classInfoServer.insertClassInfo(classNumber, className, studentCount, leftStudentCount, teacherId, teacherName, semester);
     }
 
     @RequestMapping("/deleteClassInfo")
-    private int deleteClassInfo(int classId){
+    private int deleteClassInfo(int classId) {
         return classInfoServer.deleteClassInfo(classId);
     }
 
     @RequestMapping("updateClassInfoLeftStudentCount")
-    private int updateClassInfoLeftStudentCount(@RequestParam(required = true) int classId,@RequestParam(required = true)int leftStudentCount){
-        return classInfoServer.updateClassInfoLeftStudentCount(leftStudentCount,classId);
-    };
+    private int updateClassInfoLeftStudentCount(@RequestParam(required = true) int classId, @RequestParam(required = true) int leftStudentCount) {
+        return classInfoServer.updateClassInfoLeftStudentCount(leftStudentCount, classId);
+    }
+
+    ;
 
     @RequestMapping("/selectSemester")
-    private List<ClassInfo> selectSemester(){
+    private List<ClassInfo> selectSemester() {
         return classInfoServer.selectSemester();
     }
 
     @RequestMapping("selectByClassId")
-    private List<ClassInfo> selectByClassId(int classId){
+    private List<ClassInfo> selectByClassId(int classId) {
         return classInfoServer.selectByClassId(classId);
     }
 }
