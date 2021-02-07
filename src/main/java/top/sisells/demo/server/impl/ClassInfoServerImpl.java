@@ -17,14 +17,14 @@ public class ClassInfoServerImpl implements ClassInfoServer {
     private ClassInfoSql classInfoSql;
 
     @Override
-    public List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String searchTextValue) {
-        return classInfoSql.selectAllClassInfo(semester, leftStudentModel, searchTextValue);
+    public List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String department, String searchTextValue) {
+        return classInfoSql.selectAllClassInfo(semester, leftStudentModel, department, searchTextValue);
     }
 
     @Override
     public int insertClassInfo(String classNumber, String className, int studentCount,
-                               int leftStudentCount, int teacherId, String teacherName, String semester) {
-        ClassInfo classInfo = new ClassInfo(classNumber, className, studentCount, leftStudentCount, teacherId, teacherName, semester);
+                               int leftStudentCount, int teacherId, String teacherName, String semester, String department) {
+        ClassInfo classInfo = new ClassInfo(classNumber, className, studentCount, leftStudentCount, teacherId, teacherName, semester, department);
         return classInfoSql.insertClassInfo(classInfo);
     }
 

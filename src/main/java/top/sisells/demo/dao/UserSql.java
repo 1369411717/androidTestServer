@@ -18,7 +18,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface UserSql {
-    List<User> selectAllUser();
+    List<User> selectAllUser(String userType, String classification, String searchTextValue);
 
     int insertUser(User user);
 

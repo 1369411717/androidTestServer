@@ -24,8 +24,8 @@ public class UserServerImpl implements UserServer {
     private ClassInfoSql classInfoSql;
 
     @Override
-    public List<User> selectAllUser() {
-        return userSql.selectAllUser();
+    public List<User> selectAllUser(String userType, String classification, String searchTextValue) {
+        return userSql.selectAllUser(userType, classification, searchTextValue);
     }
 
     @Override

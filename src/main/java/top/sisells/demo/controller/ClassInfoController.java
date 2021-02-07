@@ -20,14 +20,14 @@ public class ClassInfoController {
     private ClassInfoServer classInfoServer;
 
     @RequestMapping("/selectAllClassInfo")
-    private List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String searchTextValue) {
-        return classInfoServer.selectAllClassInfo(semester, leftStudentModel, searchTextValue);
+    private List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String department, String searchTextValue) {
+        return classInfoServer.selectAllClassInfo(semester, leftStudentModel, department, searchTextValue);
     }
 
     @RequestMapping("/insertClassInfo")
     private int insertClassInfo(String classNumber, String className, int studentCount,
-                                int leftStudentCount, int teacherId, String teacherName, String semester) {
-        return classInfoServer.insertClassInfo(classNumber, className, studentCount, leftStudentCount, teacherId, teacherName, semester);
+                                int leftStudentCount, int teacherId, String teacherName, String semester, String department) {
+        return classInfoServer.insertClassInfo(classNumber, className, studentCount, leftStudentCount, teacherId, teacherName, semester, department);
     }
 
     @RequestMapping("/deleteClassInfo")

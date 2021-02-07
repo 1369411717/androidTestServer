@@ -6,7 +6,7 @@
             keyColumn="classId">
         <!--IGNORE处理重复值的唯一约束,重复返回0-->
         insert IGNORE into classinfo values
-        (#{classNumber},#{className},#{studentCount},#{leftStudentCount},#{teacherId},#{teacherName})
+        (#{classNumber},#{className},#{studentCount},#{leftStudentCount},#{teacherId},#{teacherName},#{semester},#{department})
     </insert>
     <select id="selectAllClassInfo" resultType="top.sisells.demo.pojo.ClassInfo">
         select * from classinfo
@@ -23,8 +23,12 @@
                 </when>
                 <otherwise></otherwise>
             </choose>
+            <if test="department != '全部院系' and department != null and department != '' ">
+                and department = #{department}
+            </if>
             <if test="searchTextValue != null and searchTextValue != '' ">
-                and (className like "%"#{searchTextValue}"%" or classNumber like "%"#{searchTextValue}"%")
+                and (className like "%"#{searchTextValue}"%" or classNumber like "%"#{searchTextValue}"%" or
+                teacherName like "%"#{searchTextValue}"%" )
             </if>
         </where>
     </select>

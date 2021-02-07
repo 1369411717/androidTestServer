@@ -76,8 +76,6 @@ public class TestInfoServerImpl implements TestInfoServer {
         return testInfoSql.deleteTestInfo(testId);
     }
 
-    ;
-
     @Override
     public List<TestInfo> selectByClassId(int classId) {//该课程的考试信息
         return testInfoSql.selectByClassId(classId);

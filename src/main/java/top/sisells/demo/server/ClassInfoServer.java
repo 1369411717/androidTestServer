@@ -3,16 +3,18 @@ package top.sisells.demo.server;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import top.sisells.demo.pojo.ClassInfo;
+
 import java.util.List;
 
 public interface ClassInfoServer {
-    List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel,String searchTextValue);
-    int insertClassInfo(String classNumber,String className,int studentCount,
-                               int leftStudentCount,int teacherId,String teacherName,String semester);
+    List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String department, String searchTextValue);
+
+    int insertClassInfo(String classNumber, String className, int studentCount,
+                        int leftStudentCount, int teacherId, String teacherName, String semester, String department);
 
     int deleteClassInfo(int classId);
 
-    int updateClassInfoLeftStudentCount(@RequestParam(required = true) int classId, @RequestParam(required = true)int leftStudentCount);
+    int updateClassInfoLeftStudentCount(@RequestParam(required = true) int classId, @RequestParam(required = true) int leftStudentCount);
 
     List<ClassInfo> selectSemester();
 

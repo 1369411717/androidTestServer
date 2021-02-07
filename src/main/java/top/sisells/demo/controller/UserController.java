@@ -21,29 +21,30 @@ public class UserController {
     private UserServer userServer;
 
     @RequestMapping("/checkLogin")
-    public List<User> checkLogin(String userNumber,String password){
-        return userServer.selectUser(userNumber,password);
+    public List<User> checkLogin(String userNumber, String password) {
+        return userServer.selectUser(userNumber, password);
     }
 
     @RequestMapping("/selectAllUser")
-    public List<User>selectAllUser(HttpServletRequest request, HttpServletResponse response){
-        return userServer.selectAllUser();
+    public List<User> selectAllUser(String userType, String classification, String searchTextValue) {
+        return userServer.selectAllUser(userType,classification,searchTextValue);
     }
 
     @RequestMapping("/insertUser")
-    public int insertUser(int userNumber,String userName,String password,String classification,String userType){
-        User user=new User(userNumber,userName,password,classification,userType);
+    public int insertUser(int userNumber, String userName, String password, String classification, String userType) {
+        User user = new User(userNumber, userName, password, classification, userType);
         return userServer.insertUser(user);
     }
 
     @RequestMapping("/deleteUser")
-    public int deleteUser(int userNumber){
+    public int deleteUser(int userNumber) {
         return userServer.deleteUser(userNumber);
     }
 
     @RequestMapping("/updateUser")
-    public int updateUser(@RequestParam(required = true) int userNumber,String userName,String password,
-                          String classification,String userType){
-        User user=new User(userNumber,userName,password,classification,userType);
-        return userServer.updateUser(user);}
+    public int updateUser(@RequestParam(required = true) int userNumber, String userName, String password,
+                          String classification, String userType) {
+        User user = new User(userNumber, userName, password, classification, userType);
+        return userServer.updateUser(user);
+    }
 }

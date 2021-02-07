@@ -24,9 +24,10 @@ public class ClassInfo {
     private int teacherId;
     private String teacherName;
     private String semester;
+    private String department;
 
     public ClassInfo(String classNumber, String className, int studentCount,
-                     int leftStudentCount, int teacherId, String teacherName, String semester) {
+                     int leftStudentCount, int teacherId, String teacherName, String semester, String department) {
         this.classNumber = classNumber;
         this.className = className;
         this.studentCount = studentCount;
@@ -34,5 +35,6 @@ public class ClassInfo {
         this.teacherId = teacherId;
         this.teacherName = teacherName;
         this.semester = semester;
+        this.department = department;
     }
 }

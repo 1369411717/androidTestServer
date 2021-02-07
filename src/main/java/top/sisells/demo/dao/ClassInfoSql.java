@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface ClassInfoSql {
-    List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String searchTextValue);
+    List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String department, String searchTextValue);
 
     int insertClassInfo(ClassInfo classInfo);
 
