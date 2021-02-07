@@ -5,17 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 说明: 课室信息
+ * 说明：学院部门
  *
  * @author: SISE_LiuLiShun
- * @date:2021/2/7
- * @parma:
- * @return:
+ * 2021年02月07日16:56:40
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClassroomInfo {
-    private String classroomName;
-    private int seatCount;
+public class Department {
+    String number;
+    String DepartmentName;
 }

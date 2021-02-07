@@ -6,6 +6,15 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
+
+/**
+ * 说明: 监考人员信息
+ *
+ * @author: SISE_LiuLiShun
+ * @date:2021/2/7
+ * @parma:
+ * @return:
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

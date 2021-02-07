@@ -35,10 +35,10 @@ public class UserServerImpl implements UserServer {
 
     @Override
     public List<User> selectUser(String userNumber, String password) {
-        List<User> userList=userSql.selectUser(userNumber,password);
-        if (userList.size()==0){
+        List<User> userList = userSql.selectUser(userNumber, password);
+        if (userList.size() == 0) {
             return null;
-        }else {
+        } else {
             return userList;
         }
     }
@@ -46,9 +46,11 @@ public class UserServerImpl implements UserServer {
     @Override
     public int deleteUser(int userNumber) {
         //还有监考人员外键约束
-        List<ClassInfo> classInfos=classInfoSql.selectByTeacherId(userNumber);
-       if(classInfos.size()==0){return userSql.deleteUser(userNumber);}else {
-           System.out.println("外键约束！：请求删除用户");
+        List<ClassInfo> classInfos = classInfoSql.selectByTeacherId(userNumber);
+        if (classInfos.size() == 0) {
+            return userSql.deleteUser(userNumber);
+        } else {
+            System.out.println("外键约束！：请求删除用户");
             return 0;
         }
     }

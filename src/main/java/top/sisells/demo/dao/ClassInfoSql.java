@@ -6,6 +6,14 @@ import top.sisells.demo.pojo.ClassInfo;
 
 import java.util.List;
 
+/**
+ * 说明: 课程信息dao
+ *
+ * @author: SISE_LiuLiShun
+ * @date:2021/2/7
+ * @parma:
+ * @return:
+ */
 @Mapper
 @Repository
 public interface ClassInfoSql {
