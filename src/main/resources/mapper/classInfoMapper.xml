@@ -6,6 +6,7 @@
             keyColumn="classId">
         <!--IGNORE处理重复值的唯一约束,重复返回0-->
         insert IGNORE into classinfo values
+        (classNumber,className,studentCount,leftStudentCount,teacherId,teacherName,semester,department)
         (#{classNumber},#{className},#{studentCount},#{leftStudentCount},#{teacherId},#{teacherName},#{semester},#{department})
     </insert>
     <select id="selectAllClassInfo" resultType="top.sisells.demo.pojo.ClassInfo">

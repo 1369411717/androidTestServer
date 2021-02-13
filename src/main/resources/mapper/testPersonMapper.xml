@@ -5,4 +5,14 @@
     <select id="selectAllTestPerson" resultType="top.sisells.demo.pojo.TestPerson">
         select * from testperson
     </select>
+    <select id="selectTestPersonByTestId" resultType="top.sisells.demo.pojo.TestPerson">
+        select * from testperson where testId = #{testId}
+    </select>
+    <insert id="insertTestPerson" parameterType="top.sisells.demo.pojo.TestPerson" >
+        insert into testperson (testId, testName, testDate,testSegment, testClassroom, userNumber, userName)
+        values (#{testId},#{testName},#{testDate},#{testSegment},#{testClassroom},#{userNumber},#{userName})
+    </insert>
+    <delete id="deleteTestPerson">
+        delete from testperson where personId = #{personId}
+    </delete>
 </mapper>

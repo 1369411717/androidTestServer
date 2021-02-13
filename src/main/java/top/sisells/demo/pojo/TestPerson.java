@@ -27,4 +27,15 @@ public class TestPerson {
     private String testClassroom;
     private int userNumber;
     private String userName;
+
+    public TestPerson(int testId, String testName, Date testDate, int testSegment,
+                      String testClassroom, int userNumber, String userName) {
+        this.testId = testId;
+        this.testName = testName;
+        this.testDate = testDate;
+        this.testSegment = testSegment;
+        this.testClassroom = testClassroom;
+        this.userNumber = userNumber;
+        this.userName = userName;
+    }
 }

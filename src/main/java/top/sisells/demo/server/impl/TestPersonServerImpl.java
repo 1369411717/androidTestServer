@@ -19,4 +19,19 @@ public class TestPersonServerImpl implements TestPersonServer {
     public List<TestPerson> selectAllTestPerson() {
         return testPersonSql.selectAllTestPerson();
     }
+
+    @Override
+    public List<TestPerson> selectTestPersonByTestId(int testId) {
+        return testPersonSql.selectTestPersonByTestId(testId);
+    }
+
+    @Override
+    public int insertTestPerson(TestPerson testPerson) {
+        return testPersonSql.insertTestPerson(testPerson);
+    }
+
+    @Override
+    public int deleteTestPerson(int personId) {
+        return testPersonSql.deleteTestPerson(personId);
+    }
 }
