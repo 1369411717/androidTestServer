@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import top.sisells.demo.pojo.TestPerson;
 
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -21,7 +22,15 @@ public interface TestPersonSql {
 
     List<TestPerson> selectTestPersonByTestId(int testId);
 
+    List<TestPerson> selectTestPersonByUserNumber(int userNumber);
+
+    List<TestPerson> selectTestPersonByTime(Date testDate, int testSegment, List<Integer> userNumberList);
+
     int insertTestPerson(TestPerson testPerson);
 
     int deleteTestPerson(int personId);
+
+    int deleteTestPersonByTestId(int testId);
+
+    int updateTestPersonByTestId(int testId, String testClassroom);
 }

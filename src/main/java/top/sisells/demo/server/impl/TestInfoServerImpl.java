@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import top.sisells.demo.dao.ClassInfoSql;
 import top.sisells.demo.dao.TestInfoSql;
+import top.sisells.demo.dao.TestPersonSql;
 import top.sisells.demo.pojo.TestInfo;
+import top.sisells.demo.pojo.TestPerson;
 import top.sisells.demo.server.TestInfoServer;
 
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ public class TestInfoServerImpl implements TestInfoServer {
     private TestInfoSql testInfoSql;
     @Autowired
     private ClassInfoSql classInfoSql;
+    @Autowired
+    private TestPersonSql testPersonSql;
 
     @Override
     public List<TestInfo> selectAllTestInfo() {
@@ -73,6 +77,8 @@ public class TestInfoServerImpl implements TestInfoServer {
         //课程剩余未安排人数
         int leftStudentCount = classInfoSql.selectByClassId(classId).get(0).getLeftStudentCount();
         classInfoSql.updateClassInfoLeftStudentCount(leftStudentCount + preStudentCount, classId);
+        //删除考试的监考人员
+        testPersonSql.deleteTestPersonByTestId(testId);
         return testInfoSql.deleteTestInfo(testId);
     }
 
@@ -110,6 +116,7 @@ public class TestInfoServerImpl implements TestInfoServer {
                 classInfoSql.updateClassInfoLeftStudentCount(outStudentCount - seatCount, testInfo.getClassId());
             }
             //根据testId修改监考老师表的教室!!!!!!!!!!!!!!!!!!!!!!!
+            testPersonSql.updateTestPersonByTestId(testInfo.getTestId(), testInfo.getTestClassroom());
             return testInfoSql.updateTestInfoOnClassroom(testInfo);
         }
     }
@@ -121,7 +128,7 @@ public class TestInfoServerImpl implements TestInfoServer {
         //修改监考表的时间安排
         //1,寻找相同课程的所有教室列表
         List<String> testClassroomList = new ArrayList();
-        List<TestInfo> testInfoList = selectByClassId(testInfo.getClassId());
+        List<TestInfo> testInfoList = this.selectByClassId(testInfo.getClassId());
         if (testInfoList.size() == 0) {
             //不存在需要升级的现有课程
             return 0;
@@ -134,6 +141,20 @@ public class TestInfoServerImpl implements TestInfoServer {
             List<TestInfo> testInfos = testInfoSql.selectOnlyOneByList(testInfo.getTestDate(),
                     testInfo.getTestSegment(), testClassroomList);
             if (testInfos.size() == 0) {
+                List<TestPerson> testPersonList = testPersonSql.selectTestPersonByTestId(testInfo.getTestId());
+                //有监考安排
+                if (testPersonList.size() != 0) {
+                    List<Integer> userNumberList = new ArrayList<>();
+                    for (TestPerson testPerson : testPersonList) {
+                        userNumberList.add(testPerson.getUserNumber());
+                    }
+                    List<TestPerson> testPeople = testPersonSql.selectTestPersonByTime(testInfo.getTestDate(),
+                            testInfo.getTestSegment(), userNumberList);
+                    //更改后的考试有监考人员冲突
+                    if (testPeople.size() != 0) {
+                        return -3;
+                    }
+                }
                 return testInfoSql.updateTestInfoDate(testInfo);
             } else {
                 for (int i = 0; i < testInfos.size(); i++) {
