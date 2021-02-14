@@ -36,7 +36,7 @@
         update testperson set testClassroom = #{testClassroom} where testId = #{testId}
     </update>
     <update id="updateTestPersonByTestDate">
-        update testperson set testDate = #{testDate},testSegmnt = #{testSegment} where testId in
+        update testperson set testDate = #{testDate},testSegment = #{testSegment} where testId in
         (select testId from testinfo where classId = #{classId})
     </update>
 </mapper>
