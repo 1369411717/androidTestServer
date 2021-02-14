@@ -141,7 +141,7 @@ public class TestInfoServerImpl implements TestInfoServer {
             List<TestInfo> testInfos = testInfoSql.selectOnlyOneByList(testInfo.getTestDate(),
                     testInfo.getTestSegment(), testClassroomList);
             if (testInfos.size() == 0) {
-                List<TestPerson> testPersonList = testPersonSql.selectTestPersonByTestId(testInfo.getTestId());
+                List<TestPerson> testPersonList = testPersonSql.selectTestPersonByClassId(testInfo.getClassId());
                 //有监考安排
                 if (testPersonList.size() != 0) {
                     List<Integer> userNumberList = new ArrayList<>();
@@ -155,7 +155,7 @@ public class TestInfoServerImpl implements TestInfoServer {
                         return -3;
                     } else {
                         //更新监考人员的日期信息
-                        testPersonSql.updateTestPersonByTestDate(testInfo.getTestId(),
+                        testPersonSql.updateTestPersonByTestDate(testInfo.getClassId(),
                                 testInfo.getTestDate(), testInfo.getTestSegment());
                     }
                 }

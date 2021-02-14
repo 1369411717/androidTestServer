@@ -5,8 +5,9 @@
     <select id="selectAllTestPerson" resultType="top.sisells.demo.pojo.TestPerson">
         select * from testperson
     </select>
-    <select id="selectTestPersonByTestId" resultType="top.sisells.demo.pojo.TestPerson">
-        select * from testperson where testId = #{testId}
+    <select id="selectTestPersonByClassId" resultType="top.sisells.demo.pojo.TestPerson">
+        select * from testperson where testId in
+        (select testId from testinfo where classId = #{classId})
     </select>
     <select id="selectTestPersonByUserNumber" resultType="top.sisells.demo.pojo.TestPerson">
         select * from testperson where userNumber = #{userNumber}
@@ -32,6 +33,7 @@
         update testperson set testClassroom = #{testClassroom} where testId = #{testId}
     </update>
     <update id="updateTestPersonByTestDate">
-        update testperson set testDate = #{testDate},testSegmnt = #{testSegment} where testId = #{testId}
+        update testperson set testDate = #{testDate},testSegmnt = #{testSegment} where testId in
+        (select testId from testinfo where classId = #{classId})
     </update>
 </mapper>

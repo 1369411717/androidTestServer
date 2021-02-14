@@ -20,7 +20,7 @@ import java.util.List;
 public interface TestPersonSql {
     List<TestPerson> selectAllTestPerson();
 
-    List<TestPerson> selectTestPersonByTestId(int testId);
+    List<TestPerson> selectTestPersonByClassId(int classId);
 
     List<TestPerson> selectTestPersonByUserNumber(int userNumber);
 
@@ -34,5 +34,5 @@ public interface TestPersonSql {
 
     int updateTestPersonByTestClassroom(int testId, String testClassroom);
 
-    int updateTestPersonByTestDate(int testId, Date testDate, int testSegment);
+    int updateTestPersonByTestDate(int classId, Date testDate, int testSegment);
 }
