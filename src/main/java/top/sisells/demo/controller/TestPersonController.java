@@ -30,9 +30,9 @@ public class TestPersonController {
 
     @RequestMapping("/insertTestPerson")
     public int insertTestPerson(int testId, String testName, String testDate, int testSegment,
-                                String testClassroom, int userNumber, String userName) {
+                                String testClassroom, int userNumber, String userName, int leader) {
         TestPerson testPerson = new TestPerson(testId, testName, Date.valueOf(testDate), testSegment,
-                testClassroom, userNumber, userName);
+                testClassroom, userNumber, userName, leader);
         return testPersonServer.insertTestPerson(testPerson);
     }
 

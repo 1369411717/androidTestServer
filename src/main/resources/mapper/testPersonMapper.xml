@@ -9,7 +9,7 @@
         select * from testperson where testId = #{testId}
     </select>
     <select id="selectTestPersonByUserNumber" resultType="top.sisells.demo.pojo.TestPerson">
-        select * from testPerson where userNumber = #{userNumber};
+        select * from testperson where userNumber = #{userNumber}
     </select>
     <select id="selectTestPersonByTime" resultType="top.sisells.demo.pojo.TestPerson">
         select personId from testperson where testDate =#{testDate} and testSegment =#{testSegment}
@@ -19,8 +19,8 @@
         </foreach>
     </select>
     <insert id="insertTestPerson" parameterType="top.sisells.demo.pojo.TestPerson">
-        insert IGNORE into testperson (testId, testName, testDate,testSegment, testClassroom, userNumber, userName)
-        values (#{testId},#{testName},#{testDate},#{testSegment},#{testClassroom},#{userNumber},#{userName})
+        insert IGNORE into testperson (testId, testName, testDate,testSegment, testClassroom, userNumber, userName, leader)
+        values (#{testId},#{testName},#{testDate},#{testSegment},#{testClassroom},#{userNumber},#{userName},#{leader})
     </insert>
     <delete id="deleteTestPerson">
         delete from testperson where personId = #{personId}
@@ -28,7 +28,10 @@
     <delete id="deleteTestPersonByTestId">
         delete from testperson where testId = #{testId}
     </delete>
-    <update id="updateTestPersonByTestId">
+    <update id="updateTestPersonByTestClassroom">
         update testperson set testClassroom = #{testClassroom} where testId = #{testId}
+    </update>
+    <update id="updateTestPersonByTestDate">
+        update testperson set testDate = #{testDate},testSegmnt = #{testSegment} where testId = #{testId}
     </update>
 </mapper>

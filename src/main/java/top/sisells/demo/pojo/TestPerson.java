@@ -27,9 +27,10 @@ public class TestPerson {
     private String testClassroom;
     private int userNumber;
     private String userName;
+    private int leader;
 
     public TestPerson(int testId, String testName, Date testDate, int testSegment,
-                      String testClassroom, int userNumber, String userName) {
+                      String testClassroom, int userNumber, String userName, int leader) {
         this.testId = testId;
         this.testName = testName;
         this.testDate = testDate;
@@ -37,5 +38,6 @@ public class TestPerson {
         this.testClassroom = testClassroom;
         this.userNumber = userNumber;
         this.userName = userName;
+        this.leader = leader;
     }
 }

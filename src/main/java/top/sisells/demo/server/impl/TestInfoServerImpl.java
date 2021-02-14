@@ -116,7 +116,7 @@ public class TestInfoServerImpl implements TestInfoServer {
                 classInfoSql.updateClassInfoLeftStudentCount(outStudentCount - seatCount, testInfo.getClassId());
             }
             //根据testId修改监考老师表的教室!!!!!!!!!!!!!!!!!!!!!!!
-            testPersonSql.updateTestPersonByTestId(testInfo.getTestId(), testInfo.getTestClassroom());
+            testPersonSql.updateTestPersonByTestClassroom(testInfo.getTestId(), testInfo.getTestClassroom());
             return testInfoSql.updateTestInfoOnClassroom(testInfo);
         }
     }
@@ -153,6 +153,10 @@ public class TestInfoServerImpl implements TestInfoServer {
                     //更改后的考试有监考人员冲突
                     if (testPeople.size() != 0) {
                         return -3;
+                    } else {
+                        //更新监考人员的日期信息
+                        testPersonSql.updateTestPersonByTestDate(testInfo.getTestId(),
+                                testInfo.getTestDate(), testInfo.getTestSegment());
                     }
                 }
                 return testInfoSql.updateTestInfoDate(testInfo);

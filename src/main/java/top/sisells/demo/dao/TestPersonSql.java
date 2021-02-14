@@ -32,5 +32,7 @@ public interface TestPersonSql {
 
     int deleteTestPersonByTestId(int testId);
 
-    int updateTestPersonByTestId(int testId, String testClassroom);
+    int updateTestPersonByTestClassroom(int testId, String testClassroom);
+
+    int updateTestPersonByTestDate(int testId, Date testDate, int testSegment);
 }
