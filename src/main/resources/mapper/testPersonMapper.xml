@@ -9,6 +9,9 @@
         select * from testperson where testId in
         (select testId from testinfo where classId = #{classId})
     </select>
+    <select id="selectTestPersonByTestId" resultType="top.sisells.demo.pojo.TestPerson">
+        select * from testperson where testId = #{testId}
+    </select>
     <select id="selectTestPersonByUserNumber" resultType="top.sisells.demo.pojo.TestPerson">
         select * from testperson where userNumber = #{userNumber}
     </select>

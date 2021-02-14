@@ -22,6 +22,8 @@ public interface TestPersonSql {
 
     List<TestPerson> selectTestPersonByClassId(int classId);
 
+    List<TestPerson> selectTestPersonByTestId(int testId);
+
     List<TestPerson> selectTestPersonByUserNumber(int userNumber);
 
     List<TestPerson> selectTestPersonByTime(Date testDate, int testSegment, List<Integer> userNumberList);
