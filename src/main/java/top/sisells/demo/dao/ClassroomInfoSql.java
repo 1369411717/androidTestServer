@@ -18,4 +18,8 @@ import java.util.List;
 @Repository
 public interface ClassroomInfoSql {
     List<ClassroomInfo> selectAllClassroomInfo();
+
+    int deleteClassroom(String classroomName);
+
+    int insertClassroom(ClassroomInfo classroomInfo);
 }

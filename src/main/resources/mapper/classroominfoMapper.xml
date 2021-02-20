@@ -5,4 +5,10 @@
     <select id="selectAllClassroomInfo" resultType="top.sisells.demo.pojo.ClassroomInfo">
         select * from classroominfo
     </select>
+    <delete id="deleteClassroom">
+        delete from classroominfo where classroomName = #{classroomName}
+    </delete>
+    <insert id="insertClassroom" parameterType="top.sisells.demo.pojo.ClassroomInfo">
+        insert IGNORE into classroominfo (classroomName,seatCount) values (#{classroomName},#{seatCount})
+    </insert>
 </mapper>

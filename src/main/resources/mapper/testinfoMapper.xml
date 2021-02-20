@@ -40,4 +40,7 @@
     <select id="selectByTestId" resultType="top.sisells.demo.pojo.TestInfo">
         select * from testinfo where testId=#{testId}
     </select>
+    <select id="selectByClassroom" resultType="top.sisells.demo.pojo.TestInfo">
+        select * from testinfo where testClassroom = #{testClassroom}
+    </select>
 </mapper>

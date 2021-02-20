@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 import top.sisells.demo.dao.ClassInfoSql;
+import top.sisells.demo.dao.TestInfoSql;
 import top.sisells.demo.pojo.ClassInfo;
+import top.sisells.demo.pojo.TestInfo;
 import top.sisells.demo.server.ClassInfoServer;
 
 import java.util.List;
@@ -15,6 +17,8 @@ import java.util.List;
 public class ClassInfoServerImpl implements ClassInfoServer {
     @Autowired
     private ClassInfoSql classInfoSql;
+    @Autowired
+    private TestInfoSql testInfoSql;
 
     @Override
     public List<ClassInfo> selectAllClassInfo(String semester, String leftStudentModel, String department, String searchTextValue) {
@@ -25,12 +29,24 @@ public class ClassInfoServerImpl implements ClassInfoServer {
     public int insertClassInfo(String classNumber, String className, int studentCount,
                                int leftStudentCount, int teacherId, String teacherName, String semester, String department) {
         ClassInfo classInfo = new ClassInfo(classNumber, className, studentCount, leftStudentCount, teacherId, teacherName, semester, department);
-        return classInfoSql.insertClassInfo(classInfo);
+        List<ClassInfo> classInfos = classInfoSql.selectOnlyOne(classNumber, teacherId, semester);
+        if (classInfos.size() == 0) {
+            return classInfoSql.insertClassInfo(classInfo);
+        } else {
+            //课程安排冲突
+            return -1;
+        }
     }
 
     @Override
     public int deleteClassInfo(int classId) {
-        return classInfoSql.deleteClassInfo(classId);
+        List<TestInfo> testInfos = testInfoSql.selectByClassId(classId);
+        if (testInfos.size() == 0) {
+            return classInfoSql.deleteClassInfo(classId);
+        } else {
+            //课程有考试安排
+            return -1;
+        }
     }
 
     @Override
@@ -38,7 +54,6 @@ public class ClassInfoServerImpl implements ClassInfoServer {
         return classInfoSql.updateClassInfoLeftStudentCount(leftStudentCount, classId);
     }
 
-    ;
 
     @Override
     public List<ClassInfo> selectSemester() {

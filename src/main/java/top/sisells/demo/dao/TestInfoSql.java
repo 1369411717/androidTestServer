@@ -36,4 +36,6 @@ public interface TestInfoSql {
     List<TestInfo> selectOnlyOneByList(Date testDate, int testSegment, List<String> testClassroomList);
 
     List<TestInfo> selectByTestId(int testId);
+
+    List<TestInfo> selectByClassroom(String testClassroom);
 }

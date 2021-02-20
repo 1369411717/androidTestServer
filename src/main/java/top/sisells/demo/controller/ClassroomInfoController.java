@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.sisells.demo.dao.ClassroomInfoSql;
 import top.sisells.demo.pojo.ClassroomInfo;
+import top.sisells.demo.server.ClassroomServer;
 
 import java.util.List;
 
@@ -14,11 +15,22 @@ import java.util.List;
 @RequestMapping("/classroomInfo")
 public class ClassroomInfoController {
     @Autowired
-    private ClassroomInfoSql classroomInfoSql;
+    ClassroomServer classroomServer;
 
     @RequestMapping("/selectAllClassroomInfo")
-    private List<ClassroomInfo> selectAllClassroomInfo(){
-        return classroomInfoSql.selectAllClassroomInfo();
+    private List<ClassroomInfo> selectAllClassroomInfo() {
+        return classroomServer.selectAllClassroomInfo();
     }
 
+    @RequestMapping("/deleteClassroom")
+    int deleteClassroom(String classroomName) {
+        return classroomServer.deleteClassroom(classroomName);
+    }
+
+    @RequestMapping("/insertClassroom")
+    int insertClassroom(String classroomName, int seatCount) {
+        ClassroomInfo classroomInfo = new ClassroomInfo(classroomName, seatCount);
+        //如果考场重复返回0
+        return classroomServer.insertClassroom(classroomInfo);
+    }
 }
