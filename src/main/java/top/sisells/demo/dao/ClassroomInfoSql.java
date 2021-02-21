@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface ClassroomInfoSql {
-    List<ClassroomInfo> selectAllClassroomInfo();
+    List<ClassroomInfo> selectAllClassroomInfo(String classroomName);
 
     int deleteClassroom(String classroomName);
 

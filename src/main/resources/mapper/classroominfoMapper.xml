@@ -4,6 +4,11 @@
 <mapper namespace="top.sisells.demo.dao.ClassroomInfoSql">
     <select id="selectAllClassroomInfo" resultType="top.sisells.demo.pojo.ClassroomInfo">
         select * from classroominfo
+        <where>
+            <if test="classroomName !=null and classroomName !='' ">
+                classroomName like "%"#{classroomName}"%"
+            </if>
+        </where>
     </select>
     <delete id="deleteClassroom">
         delete from classroominfo where classroomName = #{classroomName}

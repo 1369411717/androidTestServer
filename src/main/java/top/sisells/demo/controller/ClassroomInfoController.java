@@ -18,8 +18,8 @@ public class ClassroomInfoController {
     ClassroomServer classroomServer;
 
     @RequestMapping("/selectAllClassroomInfo")
-    private List<ClassroomInfo> selectAllClassroomInfo() {
-        return classroomServer.selectAllClassroomInfo();
+    private List<ClassroomInfo> selectAllClassroomInfo(String classroomName) {
+        return classroomServer.selectAllClassroomInfo(classroomName);
     }
 
     @RequestMapping("/deleteClassroom")

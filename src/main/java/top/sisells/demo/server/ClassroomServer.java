@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ClassroomServer {
 
-    List<ClassroomInfo> selectAllClassroomInfo();
+    List<ClassroomInfo> selectAllClassroomInfo(String classroomName);
 
     int deleteClassroom(String classroomName);
 

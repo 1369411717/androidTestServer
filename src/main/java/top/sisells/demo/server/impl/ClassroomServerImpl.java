@@ -27,8 +27,8 @@ public class ClassroomServerImpl implements ClassroomServer {
     private TestInfoSql testInfoSql;
 
     @Override
-    public List<ClassroomInfo> selectAllClassroomInfo() {
-        return classroomInfoSql.selectAllClassroomInfo();
+    public List<ClassroomInfo> selectAllClassroomInfo(String classroomName) {
+        return classroomInfoSql.selectAllClassroomInfo(classroomName);
     }
 
     @Override
