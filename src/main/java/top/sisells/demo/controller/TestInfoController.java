@@ -19,38 +19,43 @@ public class TestInfoController {
     private TestInfoServer testInfoServer;
 
     @RequestMapping("selectAllTestInfo")
-    private List<TestInfo> selectAllTestInfo(){return testInfoServer.selectAllTestInfo();}
+    private List<TestInfo> selectAllTestInfo(String searchText) {
+        return testInfoServer.selectAllTestInfo(searchText);
+    }
 
     @RequestMapping("/insertTestInfo")
-    private int insertTestInfo(int classId,String testName,String testDate,int testSegment,String testClassroom,int seatCount){
-        TestInfo testInfo=new TestInfo(classId,testName,Date.valueOf(testDate),testSegment,testClassroom);
-        return testInfoServer.insertTestInfo(testInfo,seatCount);
-    };
+    private int insertTestInfo(int classId, String testName, String testDate, int testSegment, String testClassroom, int seatCount) {
+        TestInfo testInfo = new TestInfo(classId, testName, Date.valueOf(testDate), testSegment, testClassroom);
+        return testInfoServer.insertTestInfo(testInfo, seatCount);
+    }
+
+    ;
 
     @RequestMapping("/deleteTestInfo")
-    private int deleteTestInfo(int testId,int classId){
-        return testInfoServer.deleteTestInfo(testId,classId);
+    private int deleteTestInfo(int testId, int classId) {
+        return testInfoServer.deleteTestInfo(testId, classId);
     }
 
     @RequestMapping("/selectByClassId")
-    public List<TestInfo> selectByClassId(@RequestParam(required=true) int classId){
+    public List<TestInfo> selectByClassId(@RequestParam(required = true) int classId) {
         return testInfoServer.selectByClassId(classId);
     }
+
     @RequestMapping("/updateTestInfoOnClassroom")
-    public int updateTestInfoOnClassroom(int testId,int classId,String testDate,
-                               int testSegment,String testClassroom,int seatCount){
-        TestInfo testInfo=new TestInfo();
+    public int updateTestInfoOnClassroom(int testId, int classId, String testDate,
+                                         int testSegment, String testClassroom, int seatCount) {
+        TestInfo testInfo = new TestInfo();
         testInfo.setTestId(testId);
         testInfo.setClassId(classId);
         testInfo.setTestDate(Date.valueOf(testDate));
         testInfo.setTestSegment(testSegment);
         testInfo.setTestClassroom(testClassroom);
-        return testInfoServer.updateTestInfoOnClassroom(testInfo,seatCount);
+        return testInfoServer.updateTestInfoOnClassroom(testInfo, seatCount);
     }
 
     @RequestMapping("/updateTestInfoDate")
-    public int updateTestInfoDate(@RequestParam(required =true) int classId,String testDate,int testSegment){
-        TestInfo testInfo=new TestInfo();
+    public int updateTestInfoDate(@RequestParam(required = true) int classId, String testDate, int testSegment) {
+        TestInfo testInfo = new TestInfo();
         testInfo.setClassId(classId);
         testInfo.setTestDate(Date.valueOf(testDate));
         testInfo.setTestSegment(testSegment);

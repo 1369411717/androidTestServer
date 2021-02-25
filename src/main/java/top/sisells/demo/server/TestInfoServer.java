@@ -9,7 +9,7 @@ import java.util.List;
  * @author 大江户时代
  */
 public interface TestInfoServer {
-    List<TestInfo> selectAllTestInfo();
+    List<TestInfo> selectAllTestInfo(String searchText);
     int insertTestInfo(TestInfo testInfo,int seatCount);
     int deleteTestInfo(int testId,int classId);
     List<TestInfo> selectByClassId(int classId);

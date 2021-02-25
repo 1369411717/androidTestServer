@@ -5,7 +5,7 @@ import top.sisells.demo.pojo.TestPerson;
 import java.util.List;
 
 public interface TestPersonServer {
-    List<TestPerson> selectAllTestPerson();
+    List<TestPerson> selectAllTestPerson(String searchText);
 
     List<TestPerson> selectTestPersonByTestId(int testId);
 

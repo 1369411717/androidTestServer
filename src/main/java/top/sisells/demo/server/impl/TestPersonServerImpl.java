@@ -17,8 +17,8 @@ public class TestPersonServerImpl implements TestPersonServer {
     TestPersonSql testPersonSql;
 
     @Override
-    public List<TestPerson> selectAllTestPerson() {
-        return testPersonSql.selectAllTestPerson();
+    public List<TestPerson> selectAllTestPerson(String searchText) {
+        return testPersonSql.selectAllTestPerson(searchText);
     }
 
     @Override

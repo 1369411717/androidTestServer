@@ -18,7 +18,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface TestPersonSql {
-    List<TestPerson> selectAllTestPerson();
+    List<TestPerson> selectAllTestPerson(String searchText);
 
     List<TestPerson> selectTestPersonByClassId(int classId);
 

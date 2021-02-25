@@ -32,8 +32,8 @@ public class TestInfoServerImpl implements TestInfoServer {
     private TestPersonSql testPersonSql;
 
     @Override
-    public List<TestInfo> selectAllTestInfo() {
-        return testInfoSql.selectAllTestInfo();
+    public List<TestInfo> selectAllTestInfo(String searchText) {
+        return testInfoSql.selectAllTestInfo(searchText);
     }
 
     @Override

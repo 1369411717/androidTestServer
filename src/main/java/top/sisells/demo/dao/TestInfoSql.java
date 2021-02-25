@@ -19,7 +19,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface TestInfoSql {
-    List<TestInfo> selectAllTestInfo();
+    List<TestInfo> selectAllTestInfo(String searchText);
 
     int insertTestInfo(TestInfo testInfo);
 

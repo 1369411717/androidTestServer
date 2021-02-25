@@ -4,6 +4,12 @@
 <mapper namespace="top.sisells.demo.dao.TestPersonSql">
     <select id="selectAllTestPerson" resultType="top.sisells.demo.pojo.TestPerson">
         select * from testperson
+        <where>
+            <if test="searchText!=null and searchText!='' ">
+                testName like "%"#{searchTextValue}"%" or testDate like "%"#{searchTextValue}"%" or
+                userNumber like "%"#{searchTextValue}"%" or userName like "%"#{searchTextValue}"%"
+            </if>
+        </where>
     </select>
     <select id="selectTestPersonByClassId" resultType="top.sisells.demo.pojo.TestPerson">
         select * from testperson where testId in

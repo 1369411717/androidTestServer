@@ -19,8 +19,8 @@ public class TestPersonController {
     private TestPersonServer testPersonServer;
 
     @RequestMapping("/selectAllTestPerson")
-    public List<TestPerson> selectAllTestPerson() {
-        return testPersonServer.selectAllTestPerson();
+    public List<TestPerson> selectAllTestPerson(String searchText) {
+        return testPersonServer.selectAllTestPerson(searchText);
     }
 
     @RequestMapping("/selectTestPersonByTestId")

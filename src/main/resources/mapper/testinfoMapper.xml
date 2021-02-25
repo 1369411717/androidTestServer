@@ -4,6 +4,12 @@
 <mapper namespace="top.sisells.demo.dao.TestInfoSql">
     <select id="selectAllTestInfo" resultType="top.sisells.demo.pojo.TestInfo">
         select * from testinfo
+        <where>
+            <if test="searchText!=null and searchText!='' ">
+                testName like "%"#{searchTextValue}"%" or testDate like "%"#{searchTextValue}"%" or
+                testClassroom like "%"#{searchTextValue}"%"
+            </if>
+        </where>
     </select>
     <select id="selectOnlyOne" resultType="top.sisells.demo.pojo.TestInfo"
             parameterType="top.sisells.demo.pojo.TestInfo">
