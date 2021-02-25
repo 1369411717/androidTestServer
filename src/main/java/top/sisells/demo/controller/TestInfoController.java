@@ -29,8 +29,6 @@ public class TestInfoController {
         return testInfoServer.insertTestInfo(testInfo, seatCount);
     }
 
-    ;
-
     @RequestMapping("/deleteTestInfo")
     private int deleteTestInfo(int testId, int classId) {
         return testInfoServer.deleteTestInfo(testId, classId);
