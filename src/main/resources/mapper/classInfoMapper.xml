@@ -52,4 +52,7 @@
     <select id="selectOnlyOne" resultType="top.sisells.demo.pojo.ClassInfo">
         select * from classinfo where classNumber = #{classNumber} and teacherId = #{teacherId} and semester = #{semester}
     </select>
+    <update id="updateTeacherNameByTeacherId">
+        update classinfo set teacherName = #{teacherName} where teacherId = #{teacherId}
+    </update>
 </mapper>

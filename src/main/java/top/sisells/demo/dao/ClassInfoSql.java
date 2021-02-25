@@ -32,4 +32,6 @@ public interface ClassInfoSql {
     List<ClassInfo> selectByClassId(int classId);
 
     List<ClassInfo> selectOnlyOne(String classNumber, int teacherId, String semester);
+
+    int updateTeacherNameByTeacherId(int teacherId, String teacherName);
 }

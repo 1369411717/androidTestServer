@@ -60,8 +60,18 @@ public class UserServerImpl implements UserServer {
         }
     }
 
+    /**
+     * 说明: 修改用户信息,同时修改课程和监考人员的信息
+     *
+     * @author: SISE_LiuLiShun
+     * @date:2021/2/26
+     * @parma:[user]
+     * @return: int
+     */
     @Override
     public int updateUser(User user) {
+        classInfoSql.updateTeacherNameByTeacherId(user.getUserNumber(), user.getUserName());
+        testPersonSql.updateUserNameByUserNumber(user.getUserNumber(),user.getUserName());
         return userSql.updateUser(user);
     }
 }

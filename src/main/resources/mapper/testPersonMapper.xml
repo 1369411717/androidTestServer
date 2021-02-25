@@ -45,4 +45,7 @@
         update testperson set testDate = #{testDate},testSegment = #{testSegment} where testId in
         (select testId from testinfo where classId = #{classId})
     </update>
+    <update id="updateUserNameByUserNumber">
+        update testperson set userName = #{userName} where userNumber =#{userNumber}
+    </update>
 </mapper>

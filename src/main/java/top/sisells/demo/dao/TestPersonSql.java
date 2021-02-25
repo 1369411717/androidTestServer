@@ -37,4 +37,6 @@ public interface TestPersonSql {
     int updateTestPersonByTestClassroom(int testId, String testClassroom);
 
     int updateTestPersonByTestDate(int classId, Date testDate, int testSegment);
+
+    int updateUserNameByUserNumber(int userNumber, String userName);
 }
