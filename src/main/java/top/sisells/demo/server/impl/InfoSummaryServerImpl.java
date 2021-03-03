@@ -42,6 +42,15 @@ public class InfoSummaryServerImpl implements InfoSummaryServer {
         return allList;
     }
 
+    /**
+    * 说明: 本学期课程信息
+    *
+    * @author: SISE_LiuLiShun
+    * @date:2021/3/3
+    * @parma:[semester]
+    * @return: java.util.List<java.util.Map>
+
+    */
     @Override
     public List<Map> selectThisSemesterClassInfo(String semester) {
         List<Map> allClassList = infoSummarySql.selectThisSemesterClassInfo("全部", semester);
