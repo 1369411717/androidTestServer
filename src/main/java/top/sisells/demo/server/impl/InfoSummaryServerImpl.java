@@ -23,6 +23,14 @@ public class InfoSummaryServerImpl implements InfoSummaryServer {
     @Autowired
     InfoSummarySql infoSummarySql;
 
+    /**
+     * 说明: 本学期各部门课程信息
+     *
+     * @author: SISE_LiuLiShun
+     * @date:2021/3/4
+     * @parma:[semester]
+     * @return: java.util.List<java.util.Map>
+     */
     @Override
     public List<Map> selectDepartmentClassInfo(String semester) {
         List<Map> unFinishList = infoSummarySql.countClassInfo("未安排", semester);
@@ -43,14 +51,13 @@ public class InfoSummaryServerImpl implements InfoSummaryServer {
     }
 
     /**
-    * 说明: 本学期课程信息
-    *
-    * @author: SISE_LiuLiShun
-    * @date:2021/3/3
-    * @parma:[semester]
-    * @return: java.util.List<java.util.Map>
-
-    */
+     * 说明: 本学期课程信息
+     *
+     * @author: SISE_LiuLiShun
+     * @date:2021/3/3
+     * @parma:[semester]
+     * @return: java.util.List<java.util.Map>
+     */
     @Override
     public List<Map> selectThisSemesterClassInfo(String semester) {
         List<Map> allClassList = infoSummarySql.selectThisSemesterClassInfo("全部", semester);
@@ -59,6 +66,14 @@ public class InfoSummaryServerImpl implements InfoSummaryServer {
         return allClassList;
     }
 
+    /**
+     * 说明: 本学期考试信息
+     *
+     * @author: SISE_LiuLiShun
+     * @date:2021/3/4
+     * @parma:[startDate, stopDate]
+     * @return: java.util.List<java.util.Map>
+     */
     @Override
     public List<Map> selectThisSemesterTestInfo(String startDate, String stopDate) {
         List<Map> allTestList = infoSummarySql.selectThisSemesterTestInfo(startDate, stopDate);
